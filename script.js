@@ -11,11 +11,15 @@ class Weather {
   windField = document.querySelector(".wind");
   icon = document.querySelector(".icon");
   weatherBox = document.querySelector(".weather");
+  date = document.querySelector(".date");
+  feelsLike = document.querySelector(".feels");
   constructor() {
     this.searchBtn.addEventListener("click", (e) => {
       this.getCoords(this.inputField.value);
     });
   }
+
+  //   https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
   getCoords = async function (zip) {
     try {
       const data = await fetch(
@@ -40,7 +44,6 @@ class Weather {
     const weatherInfo = await data.json();
     console.log(weatherInfo);
     this.updateUI(weatherInfo);
-    // this.cityField.textContent = `Weather in ${weatherInfo.name}`;
   };
 
   updateUI(weatherInfo) {
@@ -48,11 +51,14 @@ class Weather {
     const { description, icon } = weather[0];
     this.cityField.textContent = `Weather in ${name}`;
     this.icon.src = `https://openweathermap.org/img/wn/${icon}.png`;
-    this.tempField.textContent = `${this.toFahrenheit(main.temp)}° F`;
+    this.tempField.textContent = `${this.toFahrenheit(
+      main.temp
+    )}° F, feels like ${this.toFahrenheit(main.feels_like)}° F`;
     this.descriptionField.textContent = `${description}`;
     this.windField.textContent = `Wind Speed: ${wind.speed}km/h`;
     this.humidityField.textContent = `Humidity: ${main.humidity}%`;
     this.weatherBox.classList.remove("loading");
+    this.date.textContent = new Date().toISOString().split("T")[0];
     const url = `https://api.unsplash.com/search/photos?query=${name}&per_page=30&client_id=${
       this.#apiKeyImages
     }`;

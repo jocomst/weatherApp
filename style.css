@@ -57,6 +57,11 @@ input.search-bar {
   font-size: 105%;
 }
 
+.feels-like {
+  display: flex;
+  justify-content: left;
+}
+
 h1.temp {
   margin: 0%;
   margin-bottom: 0.4em;
@@ -64,12 +69,17 @@ h1.temp {
 
 .description {
   text-transform: capitalize;
-  margin-left: 8px;
 }
 
 .flex {
   display: flex;
   align-items: center;
+}
+
+.flex-two {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .weather.loading {
@@ -84,4 +94,8 @@ h1.temp {
   position: absolute;
   top: 0;
   left: 20px;
+}
+
+.hidden {
+  display: none;
 }
