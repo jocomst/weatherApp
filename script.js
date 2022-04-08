@@ -49,7 +49,7 @@ class Weather {
   updateUI(weatherInfo) {
     const { name, main, weather, wind } = weatherInfo;
     const { description, icon } = weather[0];
-    this.cityField.textContent = `Weather in ${name}`;
+    this.cityField.textContent = `${name}`;
     this.icon.src = `https://openweathermap.org/img/wn/${icon}.png`;
     this.tempField.textContent = `${this.toFahrenheit(
       main.temp
